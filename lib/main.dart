@@ -12,7 +12,7 @@ class Quizzler extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: Padding(
             padding:EdgeInsets.symmetric(horizontal: 10.0) ,
@@ -85,49 +85,58 @@ class _QuizPageState extends State<QuizPage> {
           
           ),
 
-           Expanded(
-            child: Padding(padding: EdgeInsets.all(10.0),
-            child: TextButton(
-              
-              onPressed: () {
-                
-              },
-              child: Text(
-                'True',
-                
-                style: TextStyle(
-                  
-                  color: Colors.green.shade900,
-                  fontSize: 20,
-                ),
-                ),
-              ),
-            
-            )
-            
-            ),
-
+          
             Expanded(
-  child: Padding(
-    padding: EdgeInsets.all(15.0),
-    child: TextButton(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-      ),
-      onPressed: () {
-        // The user picked false.
-      },
-      child: Text(
-        'False',
-        style: TextStyle(
-          fontSize: 20.0,
-          color: Colors.white,
-        ),
-      ),
-    ),
+             child: Padding(
+             padding: EdgeInsets.all(15.0),
+             child: TextButton(
+             style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+              ),
+               onPressed: () {
+        // The user picked true.
+        setState(() {
+          
+          scoreKeeper.add(
+                  Icon(Icons.check,color: Colors.green,),
+                 );
+        });
+                 
+             },
+             child: Text(
+                'True',
+               style: TextStyle(
+                 fontSize: 20.0,
+                 color: Colors.white,
+           ),
+          ),
+       ),
+     ),
   ),
-),
 
+
+    Expanded(child: Padding(
+      padding: EdgeInsets.all(15.0),
+      child: TextButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.green.shade900),
+          
+        ),
+        onPressed: () {
+          
+        },
+        child: Text(
+          'False',
+          style: TextStyle(
+            fontSize: 20.0,
+            color: Colors.white,
+          ),
+        ),
+        
+      ),
+      ),
+      
+      ),
           Row(
 
             children: scoreKeeper,
