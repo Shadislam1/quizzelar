@@ -43,6 +43,11 @@ class _QuizPageState extends State<QuizPage> {
       'A slug\'s  blood is green.',
 
   ];
+  List<bool> answers =[
+    false,
+    true,
+    true,
+  ];
   
   int questionNumber= 0;
  
@@ -79,16 +84,7 @@ class _QuizPageState extends State<QuizPage> {
              style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
               ),
-               onPressed: () {
-                setState(() {
-                  questionNumber = questionNumber+1;
-                });
-        // The user picked true.
-          
-           print(questionNumber);
-        
-                 
-             },
+              
              child: Text(
                 'True',
                style: TextStyle(
@@ -96,6 +92,26 @@ class _QuizPageState extends State<QuizPage> {
                  color: Colors.white,
            ),
           ),
+           onPressed: () {
+
+              bool correctAnswer =answers[questionNumber];
+
+              if(correctAnswer == true){
+                print('user got it right');
+
+              }else{
+                print('user got it wrong');
+              }
+                
+                setState(() {
+                  questionNumber = questionNumber+1;
+                });
+        
+          
+           print(questionNumber);
+        
+                 
+             },
        ),
      ),
   ),
@@ -108,13 +124,7 @@ class _QuizPageState extends State<QuizPage> {
           backgroundColor: MaterialStateProperty.all<Color>(Colors.green.shade900),
           
         ),
-        onPressed: () {
-          setState(() {
-            questionNumber = questionNumber+1;
-          });
-          
-          print(questionNumber);
-        },
+        
         child: Text(
           'False',
           style: TextStyle(
@@ -122,6 +132,22 @@ class _QuizPageState extends State<QuizPage> {
             color: Colors.white,
           ),
         ),
+        onPressed: () {
+
+               bool correctAnswer =answers[questionNumber];
+
+              if(correctAnswer == false){
+                print('user got it right');
+
+              }else{
+                print('user got it wrong');
+              }
+          setState(() {
+            questionNumber = questionNumber+1;
+          });
+          
+          print(questionNumber);
+        },
         
       ),
       ),
