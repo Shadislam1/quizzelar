@@ -57,7 +57,6 @@ class _QuizPageState extends State<QuizPage> {
 
  
   
-  int questionNumber= 0;
  
   @override
   Widget build(BuildContext context) {
@@ -72,7 +71,7 @@ class _QuizPageState extends State<QuizPage> {
             padding:EdgeInsets.all(10.0) ,
             child: Center(
               child: Text(
-                quizeBrain.questionBank[questionNumber].questionText,
+                quizeBrain.getQuestionText( ),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -104,7 +103,7 @@ class _QuizPageState extends State<QuizPage> {
 
              // quizeBrain.questionBank[questionNumber].questionAnswer = true;
 
-              bool correctAnswer = quizeBrain.questionBank[questionNumber].questionAnswer;
+              bool correctAnswer = quizeBrain.getCorrectAnswer();
 
               if(correctAnswer == true){
                 print('user got it right');
@@ -114,11 +113,10 @@ class _QuizPageState extends State<QuizPage> {
               }
                 
                 setState(() {
-                  questionNumber = questionNumber+1;
+                  quizeBrain.nextQuestion();
                 });
         
           
-           print(questionNumber);
         
                  
              },
@@ -144,8 +142,7 @@ class _QuizPageState extends State<QuizPage> {
         ),
         onPressed: () {
 
-               bool correctAnswer = quizeBrain.questionBank[questionNumber].questionAnswer;
-
+                 bool correctAnswer = quizeBrain.getCorrectAnswer();
               if(correctAnswer == false){
                 print('user got it right');
 
@@ -153,10 +150,10 @@ class _QuizPageState extends State<QuizPage> {
                 print('user got it wrong');
               }
           setState(() {
-            questionNumber = questionNumber+1;
+            quizeBrain.nextQuestion();
           });
           
-          print(questionNumber);
+        
         },
         
       ),
