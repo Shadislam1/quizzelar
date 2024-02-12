@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // ignore: unused_import
 import 'package:quizzelar/question.dart';
 import 'package:quizzelar/quize_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizeBrain quizeBrain = QuizeBrain();
  
@@ -41,20 +42,44 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List <Icon>scoreKeeper = [];
-  //List<String>questions =[
-    //  'You can lead a cow down stairs but not up stairs.',
-     // 'Approximately one quarter of human are in the feet.'
-     // 'A slug\'s  blood is green.',
+  List <Icon>scoreKeeper = [
 
- // ];
- // List<bool> answers =[
-  //  false,
-  //  true,
-  //  true,
- // ];
- // Question q1 =Question(q: 'You can lead a cow down stairs but not up stairs.', a: false);
+  
+  ];
+  
+  void cheekAnswer(bool userPickedAnswer){
+    
 
+        bool correctAnswer = quizeBrain.getCorrectAnswer();
+         setState(() {
+
+          if(quizeBrain.isFinished()==true){
+
+            Alert(
+              context: context,
+               title: 'Finished!', 
+               desc: "Flutter is awesome.")
+               .show();
+               quizeBrain.reset();
+               scoreKeeper =[];
+          }
+
+      else{
+              if(userPickedAnswer == correctAnswer){
+               
+
+                scoreKeeper.add(Icon(Icons.check,color: Colors.red,),);
+
+              }else{
+               
+               scoreKeeper.add(Icon(Icons.close,color: Colors.white,));
+              }
+                
+               
+                  quizeBrain.nextQuestion();
+      }
+                });
+  }
  
   
  
@@ -103,19 +128,8 @@ class _QuizPageState extends State<QuizPage> {
 
              // quizeBrain.questionBank[questionNumber].questionAnswer = true;
 
-              bool correctAnswer = quizeBrain.getCorrectAnswer();
-
-              if(correctAnswer == true){
-                print('user got it right');
-
-              }else{
-                print('user got it wrong');
-              }
-                
-                setState(() {
-                  quizeBrain.nextQuestion();
-                });
-        
+          
+        cheekAnswer(true);
           
         
                  
@@ -142,16 +156,7 @@ class _QuizPageState extends State<QuizPage> {
         ),
         onPressed: () {
 
-                 bool correctAnswer = quizeBrain.getCorrectAnswer();
-              if(correctAnswer == false){
-                print('user got it right');
-
-              }else{
-                print('user got it wrong');
-              }
-          setState(() {
-            quizeBrain.nextQuestion();
-          });
+                cheekAnswer(false) ;
           
         
         },
