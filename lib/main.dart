@@ -8,7 +8,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 QuizeBrain quizeBrain = QuizeBrain();
  
 void main() {
-  runApp(Quizzler());
+  runApp(const Quizzler());
     
 }
 
@@ -17,7 +17,7 @@ class Quizzler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.black,
         body: SafeArea(
@@ -68,11 +68,11 @@ class _QuizPageState extends State<QuizPage> {
               if(userPickedAnswer == correctAnswer){
                
 
-                scoreKeeper.add(Icon(Icons.check,color: Colors.red,),);
+                scoreKeeper.add(const Icon(Icons.check,color: Colors.red,),);
 
               }else{
                
-               scoreKeeper.add(Icon(Icons.close,color: Colors.white,));
+               scoreKeeper.add(const Icon(Icons.close,color: Colors.white,));
               }
                 
                
@@ -93,12 +93,12 @@ class _QuizPageState extends State<QuizPage> {
 
          flex: 5, 
           child:Padding(
-            padding:EdgeInsets.all(10.0) ,
+            padding:const EdgeInsets.all(10.0) ,
             child: Center(
               child: Text(
                 quizeBrain.getQuestionText( ),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 25.0,
                   color: Colors.white,
                 ),
@@ -111,13 +111,13 @@ class _QuizPageState extends State<QuizPage> {
           
             Expanded(
              child: Padding(
-             padding: EdgeInsets.all(15.0),
+             padding: const EdgeInsets.all(15.0),
              child: TextButton(
              style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
               ),
               
-             child: Text(
+             child: const Text(
                 'True',
                style: TextStyle(
                  fontSize: 20.0,
@@ -140,14 +140,14 @@ class _QuizPageState extends State<QuizPage> {
 
 
     Expanded(child: Padding(
-      padding: EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(15.0),
       child: TextButton(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(Colors.green.shade900),
           
         ),
         
-        child: Text(
+        child: const Text(
           'False',
           style: TextStyle(
             fontSize: 20.0,
